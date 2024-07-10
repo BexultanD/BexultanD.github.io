@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITStep Clicker</title>
+    <title>Hamster Kombat Clicker</title>
     <style>
         body {
             display: flex;
@@ -24,11 +24,10 @@
 </head>
 <body>
     <div class="game-container">
-        <img src="hamster.png" alt="Hamster" class="hamster" width="200" onclick="clickHamster()">
+        <img src="itstep.png" alt="Hamster" class="hamster" width="200" onclick="clickHamster()">
         <div>
             <p id="clickCount">Клики: 0</p>
             <p id="level">Уровень: 1</p>
-            <p id="timeLeft">Время: 60</p>
         </div>
     </div>
 
@@ -36,8 +35,6 @@
         let clickCount = 0;
         let level = 1;
         let pointsPerClick = 1;
-        let gameDuration = 60;
-        let startTime = new Date().getTime();
 
         function clickHamster() {
             clickCount += pointsPerClick;
@@ -49,19 +46,6 @@
                 document.getElementById('level').innerText = `Уровень: ${level}`;
             }
         }
-
-        function updateTimer() {
-            let elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
-            let timeLeft = gameDuration - elapsedTime;
-            document.getElementById('timeLeft').innerText = `Время: ${timeLeft}`;
-
-            if (timeLeft <= 0) {
-                alert(`Игра окончена! Ваш счет: ${clickCount}`);
-                clearInterval(timerInterval);
-            }
-        }
-
-        let timerInterval = setInterval(updateTimer, 1000);
     </script>
 </body>
 </html>
