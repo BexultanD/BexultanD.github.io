@@ -19,6 +19,10 @@
         }
         .hamster {
             cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .hamster:active {
+            transform: scale(0.9);
         }
     </style>
 </head>
@@ -45,6 +49,11 @@
                 pointsPerClick += 1;
                 document.getElementById('level').innerText = `Уровень: ${level}`;
             }
+
+            // Добавим анимацию
+            const hamster = document.querySelector('.hamster');
+            hamster.classList.add('clicked');
+            setTimeout(() => hamster.classList.remove('clicked'), 100);
         }
     </script>
 </body>
