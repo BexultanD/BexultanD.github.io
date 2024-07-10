@@ -1,7 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITStep Clicker</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .game-container {
+            text-align: center;
+        }
+        .hamster {
+            cursor: pointer;
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div class="game-container">
+        <img src="hamster.png" alt="Hamster" class="hamster" width="200" onclick="clickHamster()">
+        <div>
+            <p id="clickCount">Клики: 0</p>
+            <p id="level">Уровень: 1</p>
+            <p id="timeLeft">Время: 60</p>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        let level = 1;
+        let pointsPerClick = 1;
+        let gameDuration = 60;
+        let startTime = new Date().getTime();
+
+        function clickHamster() {
+            clickCount += pointsPerClick;
+            document.getElementById('clickCount').innerText = `Клики: ${clickCount}`;
+
+            if (clickCount >= level * 10) {
+                level += 1;
+                pointsPerClick += 1;
+                document.getElementById('level').innerText = `Уровень: ${level}`;
+            }
+        }
+
+        function updateTimer() {
+            let elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
+            let timeLeft = gameDuration - elapsedTime;
+            document.getElementById('timeLeft').innerText = `Время: ${timeLeft}`;
+
+            if (timeLeft <= 0) {
+                alert(`Игра окончена! Ваш счет: ${clickCount}`);
+                clearInterval(timerInterval);
+            }
+        }
+
+        let timerInterval = setInterval(updateTimer, 1000);
+    </script>
 </body>
 </html>
