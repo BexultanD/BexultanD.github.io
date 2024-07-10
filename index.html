@@ -31,6 +31,7 @@
         <img src="itstep.png" alt="Hamster" class="hamster" width="200" onclick="clickHamster()">
         <div>
             <p id="clickCount">Клики: 0</p>
+            <p id="money">Монет: 0</p>
             <p id="level">Уровень: 1</p>
         </div>
     </div>
@@ -38,19 +39,22 @@
     <script>
         let clickCount = 0;
         let level = 1;
+        let money = 1;
         let pointsPerClick = 1;
 
         function clickHamster() {
-            clickCount += pointsPerClick;
+            clickCount += 1;
+            money += pointsPerClick;
             document.getElementById('clickCount').innerText = `Клики: ${clickCount}`;
+            document.getElementById('money').innerText = `Монет: ${money}`;
 
             if (clickCount >= level * 10) {
                 level += 1;
                 pointsPerClick += 1;
+                money += 1;
                 document.getElementById('level').innerText = `Уровень: ${level}`;
             }
 
-            // Добавим анимацию
             const hamster = document.querySelector('.hamster');
             hamster.classList.add('clicked');
             setTimeout(() => hamster.classList.remove('clicked'), 100);
